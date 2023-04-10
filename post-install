@@ -4,6 +4,9 @@
 sudo xbps-install -S
 sudo xbps-install xbps
 sudo xbps-install -Syu
+sudo xbps-install -Rs void-repo-nonfree # add non-free repo
+sudo xbps-install -Rs void-repo-multilib
+sudo xbps-install -Rs void-repo-multilib-nonfree
 ```
 
 # setting time using chrony!
@@ -56,10 +59,49 @@ sudo xbps-install xfce4-pulseaudio-plugin (optional in XFCE, and add it to xfce4
 
 ```
 sudo xbps-install git neovim xclip vlc
+sudo xbps-install gpick libnotify-bin gpick ImageMagick # some binary dependencies
+sudo xbps-install galculator maim
 ```
 
 # for mounting?
 
 ```
 sudo xbps-install -Rs ntfs-3g udisks2 gvfs mtpfs gvfs-mtp gvfs-gphoto2
+```
+
+# fonts
+
+- Noto fonts:
+
+```
+sudo xbps-install -Rs noto-fonts-emoji noto-fonts-ttf noto-fonts-ttf-extra
+```
+
+- Microsoft fonts:
+
+```
+git clone https://github.com/void-linux/void-packages
+cd void-packages
+./xbps-src binary-bootstrap
+echo "XBPS_ALLOW_RESTRICTED=yes" >> etc/conf
+```
+
+installation: 
+
+```
+./xbps-src pkg -f msttcorefonts
+xi msttcorefonts
+```
+
+- Set better font for firefox
+
+```
+sudo ln -s /usr/share/fontconfig/conf.avail/70-no-bitmaps.conf /etc/fonts/conf.d/
+sudo xbps-reconfigure -f fontconfig
+```
+
+# Keybinding
+
+```
+sudo xbps-install sxhkd
 ```
